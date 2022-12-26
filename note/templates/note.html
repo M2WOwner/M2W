@@ -1,18 +1,24 @@
 {% extends 'base.html' %}
 
+
+    {% for message in messages %}
+        <strong><i style="color: green;">{{ message }}</i></strong>
+    {% endfor %}
+
+
 {% block content %}
     <div class="list-group">
   <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-    <h1>Products</h1>
+    <h1>notes</h1>
   </a>
     <div class="card-group" style="flex-wrap: wrap;">
-        {% for product in products %}
+        {% for note in notes %}
         <div class="card" style="border-radius:20px; align-items:center; place-content:center; display:flex; padding:1vw; border:solid 3px red; margin:1vw; flex:1 1 30%;">
-            <img src="{{ product.Image }}" class="card-img-top img-fluid" style="border:solid 1px black;" alt="...">
+            <img src="{{ note.Image }}" class="card-img-top img-fluid" style="border:solid 1px black;" alt="...">
             <div class="card-body">
-                <h5 class="card-Title">{{ product.name }}</h5>
-                <p class="card-text">{{ product.Description }}</p>
-            <a href="#" class="btn btn-primary">{{ product.price }}$</a>
+                <h5 class="card-Title">{{ note.Title }}</h5>
+                <p class="card-text">{{ note.Description }}</p>
+                <a href="#" class="btn btn-primary">Like</a>
             </div>
         </div>
         {% endfor %}

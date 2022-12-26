@@ -45,8 +45,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'products.apps.ProductsConfig',
     "accounts",
+    'note.apps.NoteConfig',
+    # 'note',
     # 'django.contrib.auth.models.AnonymousUser',
 ]
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

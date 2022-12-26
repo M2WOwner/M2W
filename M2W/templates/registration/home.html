@@ -1,17 +1,72 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% for message in messages %}
-    <strong><i style="color: green;">{{message}}</i></strong>
-{% endfor %}    
-<br><br>
-{% if user.is_authenticated %}
-    <h3>welcome <i style="color: green;">{{ username }}</i> You are  login Enjoy annd subscribe.</h3>
-{% else %}
 
+    {% for message in messages %}
+        <strong><i style="color: green;">{{ message }}</i></strong>
+    {% endfor %}
 
-{% endif %}   
+    <br>
+    <!-- <iframe id="encoder_iframe" height=100% width="50%" src="{% url 'notes' %}">
+    </iframe> -->
+    <style>
+       
+        /*Assign font-size of parent element to 0px*/
+        .div {
+            display:flex; 
+            place-content: center;                        
+        }
+ 
+        /*Making the element inline-block*/
+        /*Assign proper font-size to the inline block element*/
+        .div .span {
+            display:inline-block;
+            font-size:16px;                            
+        }
+        .Links:hover{
+            color:rgb(0, 255, 136);
+        }
+        .Links{
+            text-decoration: none;
+        }
+    </style>
+    <br>
 
-
-
+    {% if user.is_authenticated %}
+        <h3>Start Posting
+                <i style="background: rgb(0, 255, 136);">{{ user.username }}</i>
+        </h3>
+        <div class="container">
+            <div class="card">
+                <form action="{% url 'notes' %}" method="POST" >{% csrf_token %}
+                    <div class="mb-3">
+                      <label for="Title" class="form-label">Title</label>
+                      <input type="text" class="form-control" id="Title" name="Title">
+                    </div>
+                    <div class="mb-3">
+                        <label for="Description" class="form-label">Description</label>
+                        <textarea class="form-control" id="Description" rows="3" name="Description"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Default file input example</label>
+                        <!-- <input class="form-control" type="file" id="formFile"> -->
+                        <input class="form-control" type="text" id="formFile" name="Image">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+            </div>
+        </div>
+        <br>
+        <div class="container">
+            <a class="Links" href="/notes">View</a> All Notes
+        </div>
+    {% else %}
+        <div class="div">
+            <!-- <i style="color: green;">Brother|Sister</i> -->
+            <span class="span">Please Try To</span>&nbsp;
+            <span class="span"><a class="Links" href="/accounts/signin"> Sign In </a></span>&nbsp;
+            <span class="span">/</span>&nbsp;
+            <span class="span"><a class="Links" href="/accounts/signup"> Sign Up </a></span>&nbsp;
+        </div>
+    {% endif %}   
 {% endblock %}

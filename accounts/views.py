@@ -2,10 +2,11 @@ from django.shortcuts import render, redirect
 
 # accounts/views.py
 from django.contrib.auth.forms import UserCreationForm
+from django.template import RequestContext
 from django.urls import reverse_lazy
 from django.views import generic
 from .models import SignUpView
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, get_user
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.conf import settings
@@ -22,8 +23,11 @@ def signin(request):
         user = authenticate(username=username, password=password)
         if user is not None and user.is_active:
             login(request, user)
+            # context = RequestContext(request, {
+            #     'username': username,
+            # })
             return HttpResponseRedirect( settings.LOGIN_REDIRECT_URL )
-    return render(request, signin_page)
+    return render( request, signin_page)
 
 
 def signout(request):

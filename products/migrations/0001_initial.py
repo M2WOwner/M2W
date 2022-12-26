@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('code', models.CharField(max_length=11)),
-                ('description', models.CharField(max_length=255)),
+                ('Description', models.CharField(max_length=255)),
                 ('discount', models.FloatField()),
             ],
         ),
@@ -26,8 +26,8 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=255)),
                 ('price', models.FloatField()),
-                ('description', models.CharField(max_length=1000)),
-                ('image', models.CharField(max_length=2083)),
+                ('Description', models.CharField(max_length=1000)),
+                ('Image', models.CharField(max_length=2083)),
             ],
         ),
     ]
